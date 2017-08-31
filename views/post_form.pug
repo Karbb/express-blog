@@ -1,0 +1,22 @@
+extends layout
+
+block content
+    h1=title
+
+    form(method='POST' action='')
+        div.form-group
+            label(for='post_title') Post Title:
+            input#post_title.form-control(type='text', placeholder='Title', name='post_title', required='true', value=(post===undefined ? '' : post.title))
+
+        div.form-group
+            label(for='post_content') Content:
+            textarea#post_content.form-control(cols="30", rows="10", type='text', placeholder='Content', name='post_content', required='true', value=(post===undefined ? '' : post.content))
+
+        div.form-group
+            label(for='post_author') Author:
+            input#post_author.form-control(type='text', placeholder='Author', name='post_author', value=(post===undefined ? '' : post.author))
+        button.btn.btn-primary(type='submit') Submit
+    if errors
+        ul
+            for error in errors
+                li!= error.msg
